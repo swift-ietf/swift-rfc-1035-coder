@@ -1,0 +1,3 @@
+# swift-rfc-1035-coder
+
+Wire and presentation coders for the swift-rfc-1035 domain model: `RFC_1035.Message.Coder` reads and writes the section 4 message format (header flags word, section counts, section 4.1.4 compression pointers on read, uncompressed names on write, typed RDATA for A, NS, CNAME, PTR, MX, TXT and SOA with opaque passthrough) with `RFC_1035.Message.Failure` as its typed error; `RFC_1035.Domain.Coder` and `RFC_1035.Domain.Label.Coder` read and write the section 2.3.1 presentation text; the `ASCII.Parseable`, `ASCII.Serializable` and `Binary.Serializable` conformances and `Coder.Codable` (`encoded()`, `init(decoding:)`) are declared here.
