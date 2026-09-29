@@ -39,10 +39,10 @@ struct `RFC_1035.Domain.Coder Tests` {
     @Test
     func `round-trips`() throws {
         let domain = try RFC_1035.Domain("api.example.com")
-        #expect(try domain.encoded() == "api.example.com")
+        #expect(try RFC_1035.Domain.coder.serialize(domain) == "api.example.com")
 
-        var input = try domain.encoded()[...]
-        #expect(try RFC_1035.Domain(decoding: &input) == domain)
+        var input = try RFC_1035.Domain.coder.serialize(domain)[...]
+        #expect(try RFC_1035.Domain.coder.parse(&input) == domain)
     }
 
     @Test
@@ -55,6 +55,6 @@ struct `RFC_1035.Domain.Coder Tests` {
     @Test
     func `a label round-trips`() throws {
         let label = try RFC_1035.Domain.Label("example")
-        #expect(try label.encoded() == "example")
+        #expect(try RFC_1035.Domain.Label.coder.serialize(label) == "example")
     }
 }

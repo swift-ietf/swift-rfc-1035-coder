@@ -25,9 +25,9 @@ extension `RFC_1035.Message.Coder Tests`.`Captured Vectors` {
         let header = RFC_1035.Message.Header(id: 0x2b7d, kind: .query, options: [.recursionDesired])
         let message = RFC_1035.Message(header: header, questions: [question])
 
-        #expect(try message.encoded() == Hex.bytes(Vectors.queryExampleA))
+        #expect(try RFC_1035.Message.coder.serialize(message) == Hex.bytes(Vectors.queryExampleA))
 
-        var input = try message.encoded()[...]
+        var input = try RFC_1035.Message.coder.serialize(message)[...]
         #expect(try RFC_1035.Message.coder.parse(&input) == message)
         #expect(input.isEmpty)
     }
@@ -41,7 +41,7 @@ extension `RFC_1035.Message.Coder Tests`.`Captured Vectors` {
         let header = RFC_1035.Message.Header(id: 0x2b7d, kind: .query, options: [.recursionDesired])
         let message = RFC_1035.Message(header: header, questions: [question])
 
-        #expect(try message.encoded() == Hex.bytes(Vectors.queryExampleAAAA))
+        #expect(try RFC_1035.Message.coder.serialize(message) == Hex.bytes(Vectors.queryExampleAAAA))
     }
 
     @Test
@@ -50,10 +50,10 @@ extension `RFC_1035.Message.Coder Tests`.`Captured Vectors` {
         let header = RFC_1035.Message.Header(id: 0x2b7d, kind: .query, options: [.recursionDesired])
         let message = RFC_1035.Message(header: header, questions: [question])
 
-        #expect(try message.encoded() == Hex.bytes(Vectors.queryWWWExampleA))
+        #expect(try RFC_1035.Message.coder.serialize(message) == Hex.bytes(Vectors.queryWWWExampleA))
 
-        var input = try message.encoded()[...]
-        #expect(try RFC_1035.Message(decoding: &input) == message)
+        var input = try RFC_1035.Message.coder.serialize(message)[...]
+        #expect(try RFC_1035.Message.coder.parse(&input) == message)
     }
 
     @Test
@@ -122,7 +122,7 @@ extension `RFC_1035.Message.Coder Tests`.`Captured Vectors` {
             var input = original[...]
             let message = try RFC_1035.Message.coder.parse(&input)
 
-            let reserialized = try message.encoded()
+            let reserialized = try RFC_1035.Message.coder.serialize(message)
             var reinput = reserialized[...]
             #expect(try RFC_1035.Message.coder.parse(&reinput) == message)
 
@@ -214,7 +214,7 @@ extension `RFC_1035.Message.Coder Tests`.`RDATA` {
             answers: [ns, cname, ptr, mx, txt, soa, a, opaque]
         )
 
-        var input = try message.encoded()[...]
+        var input = try RFC_1035.Message.coder.serialize(message)[...]
         let parsed = try RFC_1035.Message.coder.parse(&input)
         #expect(parsed == message)
         #expect(parsed.answers.count == 8)
@@ -252,7 +252,7 @@ extension `RFC_1035.Message.Coder Tests`.`RDATA` {
             answers: [record]
         )
 
-        var input = try message.encoded()[...]
+        var input = try RFC_1035.Message.coder.serialize(message)[...]
         let parsed = try RFC_1035.Message.coder.parse(&input)
         #expect(parsed.answers[0].data == .txt(strings))
     }

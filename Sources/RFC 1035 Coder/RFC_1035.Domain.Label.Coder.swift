@@ -34,5 +34,3 @@ extension RFC_1035.Domain.Label {
 
     public static var coder: Coder<ArraySlice<Byte>, [Byte]> { .init() }
 }
-
-extension RFC_1035.Domain.Label: Coder.Codable {}
