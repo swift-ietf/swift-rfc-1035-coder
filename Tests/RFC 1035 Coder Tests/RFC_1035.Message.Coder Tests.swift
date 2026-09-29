@@ -1,9 +1,7 @@
-import Binary_Serializable
+import Binary
 import Byte
-import Byte_Standard_Library_Integration
 import Coder
-import Coder_Standard_Library_Integration
-import Cursor_Standard_Library_Integration
+import Cursor
 import Parser
 import RFC_1035
 import RFC_1035_Coder

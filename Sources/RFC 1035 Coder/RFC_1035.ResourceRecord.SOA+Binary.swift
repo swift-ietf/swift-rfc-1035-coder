@@ -1,8 +1,7 @@
-public import Binary_Endianness
-public import Binary_Serializable
+public import Binary
 public import Byte
 public import RFC_1035
-import Binary_Standard_Library_Integration
+import Binary
 
 extension RFC_1035.ResourceRecord.SOA: @retroactive Binary.Serializable {
 
