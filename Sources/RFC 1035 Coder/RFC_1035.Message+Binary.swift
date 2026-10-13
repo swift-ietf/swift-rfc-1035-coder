@@ -1,7 +1,6 @@
 public import Binary
 public import Byte
 public import RFC_1035
-import Binary
 
 extension RFC_1035.Message: @retroactive Binary.Serializable {
 

@@ -2,7 +2,7 @@ public import RFC_1035
 
 extension RFC_1035.Message {
 
-    public enum Failure: Swift.Error, Sendable, Equatable {
+    public enum Failure: Swift::Error, Sendable, Equatable {
 
         case truncated
 
