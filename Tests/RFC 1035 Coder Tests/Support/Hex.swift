@@ -32,4 +32,3 @@ enum Hex {
             : Character(Unicode.Scalar(nibble - 10 + 0x61))
     }
 }
-

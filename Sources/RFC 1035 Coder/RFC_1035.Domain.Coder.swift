@@ -1,9 +1,8 @@
 public import Byte
 public import Coder
 public import Cursor
-public import Cursor
-public import RFC_1035
 import Parser
+public import RFC_1035
 import Serializer
 
 extension RFC_1035.Domain {

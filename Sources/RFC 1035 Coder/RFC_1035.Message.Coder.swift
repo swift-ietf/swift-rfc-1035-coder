@@ -1,9 +1,9 @@
+import Binary
 public import Byte
 public import Coder
 public import Cursor
-public import RFC_1035
-import Binary
 import Parser
+public import RFC_1035
 import Serializer
 
 extension RFC_1035.Message {
